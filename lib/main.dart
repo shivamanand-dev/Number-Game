@@ -39,6 +39,8 @@ class _GameFunState extends State<GameFun> {
   int inputValue = 0;
   String nextBtn = "Submit";
 
+  int score = 0;
+
 // Change Number
   void changeNumber() {
     setState(() {
@@ -97,6 +99,7 @@ class _GameFunState extends State<GameFun> {
       if (firstNum + secondNum == inputValue) {
         print('true');
         nextBtn = "Correct";
+        score = score + 1;
       } else {
         print('false');
         nextBtn = "Incorrect";
@@ -105,6 +108,7 @@ class _GameFunState extends State<GameFun> {
       if (firstNum - secondNum == inputValue) {
         print('true');
         nextBtn = "Correct";
+        score = score + 1;
       } else {
         print('false');
         nextBtn = "Incorrect";
@@ -113,6 +117,7 @@ class _GameFunState extends State<GameFun> {
       if (firstNum * secondNum == inputValue) {
         print('true');
         nextBtn = "Correct";
+        score = score + 1;
       } else {
         print('false');
         nextBtn = "Incorrect";
@@ -121,6 +126,7 @@ class _GameFunState extends State<GameFun> {
       if (firstNum / secondNum == inputValue) {
         print('true');
         nextBtn = "Correct";
+        score = score + 1;
       } else {
         print('false');
         nextBtn = "Incorrect";
@@ -220,7 +226,7 @@ class _GameFunState extends State<GameFun> {
                               padding: const EdgeInsets.all(10),
                               margin: const EdgeInsets.only(left: 20),
                               child: Text(
-                                'Score',
+                                'Score: $score',
                                 style: TextStyle(
                                     color: Colors.green[900], fontSize: 30),
                               ),
@@ -242,6 +248,7 @@ class _GameFunState extends State<GameFun> {
                                 changeOperator();
                                 changeNumber();
                                 clearTextBox();
+                                score = 0;
                               },
                             )
                           ],

@@ -136,85 +136,119 @@ class _GameFunState extends State<GameFun> {
   Widget build(BuildContext context) {
     return Center(
         child: Padding(
-            padding: EdgeInsets.only(right: 20),
+            padding: EdgeInsets.only(right: 20, bottom: 30, top: 30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        '$firstNum',
-                        style: TextStyle(color: Colors.white, fontSize: 60),
-                        textAlign: TextAlign.center,
+                Expanded(
+                  flex: 2,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          '$firstNum',
+                          style: TextStyle(color: Colors.white, fontSize: 60),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        '$operate',
-                        style: TextStyle(color: Colors.white, fontSize: 60),
-                        textAlign: TextAlign.center,
+                      Expanded(
+                        child: Text(
+                          '$operate',
+                          style: TextStyle(color: Colors.white, fontSize: 60),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        '$secondNum',
-                        style: TextStyle(color: Colors.white, fontSize: 60),
-                        textAlign: TextAlign.center,
+                      Expanded(
+                        child: Text(
+                          '$secondNum',
+                          style: TextStyle(color: Colors.white, fontSize: 60),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        '=',
-                        style: TextStyle(color: Colors.white, fontSize: 60),
-                        textAlign: TextAlign.center,
+                      Expanded(
+                        child: Text(
+                          '=',
+                          style: TextStyle(color: Colors.white, fontSize: 60),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        textAlign: TextAlign.center,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.white54, width: 2.0)),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 5.0),
-                            ),
-                            hintText: '',
-                            hoverColor: Colors.white),
-                        style: TextStyle(color: Colors.white, fontSize: 60),
-                        // On change
-                        onChanged: (text) {
-                          inputValue = int.parse(text);
-                          print(inputValue);
-                        },
-                        controller: fieldText,
+                      Expanded(
+                        child: TextField(
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.white54, width: 2.0)),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.white, width: 5.0),
+                              ),
+                              hintText: '',
+                              hoverColor: Colors.white),
+                          style: TextStyle(color: Colors.white, fontSize: 60),
+                          // On change
+                          onChanged: (text) {
+                            inputValue = int.parse(text);
+                            print(inputValue);
+                            checkAnswer();
+                            if (nextBtn == "Correct") {
+                              changeOperator();
+                              changeNumber();
+                              clearTextBox();
+                            }
+                          },
+                          controller: fieldText,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    FlatButton(
-                      color: Colors.grey[100],
-                      height: 50,
-                      child: Text(
-                        '$nextBtn',
-                        style:
-                            TextStyle(color: Colors.green[900], fontSize: 30),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              color: Colors.grey[100],
+                              // height: 50,
+                              padding: const EdgeInsets.all(10),
+                              margin: const EdgeInsets.only(left: 20),
+                              child: Text(
+                                'Score',
+                                style: TextStyle(
+                                    color: Colors.green[900], fontSize: 30),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                      onPressed: () {
-                        checkAnswer();
-                        changeOperator();
-                        changeNumber();
-                        clearTextBox();
-                      },
-                    )
-                  ],
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: <Widget>[
+                            FlatButton(
+                              color: Colors.grey[100],
+                              height: 60,
+                              minWidth: 30,
+                              child: Icon(Icons.refresh),
+                              onPressed: () {
+                                changeOperator();
+                                changeNumber();
+                                clearTextBox();
+                              },
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 )
               ],
             )));

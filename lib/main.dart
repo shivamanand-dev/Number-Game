@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
           title: Text('Game'),
         ),
         body: GameFun(),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[850],
       ),
     );
   }
@@ -61,7 +61,13 @@ class _GameFunState extends State<GameFun> {
         int tempFirstNum = Random().nextInt(9);
         int tempSecondNum = Random().nextInt(8) + 1;
         if (tempFirstNum - tempSecondNum < 0) {
-          print('0 se km hai')
+          print('0 se km hai');
+          firstNum = tempSecondNum;
+          secondNum = tempFirstNum;
+        } else {
+          print('0 se jada hai');
+          firstNum = tempFirstNum;
+          secondNum = tempSecondNum;
         }
       } else {
         firstNum = Random().nextInt(9);

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.numbergame">
+    package="com.shivam.numbergame">
    <application
-        android:label="numbergame"
+        android:label="Maths Operation"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
